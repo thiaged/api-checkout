@@ -2,10 +2,8 @@ package com.thiaged.ecommerce.checkout.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Builder
 @Data
@@ -13,8 +11,17 @@ import javax.persistence.Entity;
 public class CheckoutEntity {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     @Column
     private String code;
+
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
+
+    public enum Status {
+        CREATED,
+        APROVED
+    }
 }
